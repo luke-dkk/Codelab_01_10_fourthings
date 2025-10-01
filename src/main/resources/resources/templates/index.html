@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello msgboard</title>
+</head>
+<body>
+    <p>Hello messageboard</p>
+    <div th:replace="~{fragments :: header('Message Board Test')}"></div>
+    <div th:if="${#ctx.session.currentUser != null}">
+        <p>Welcome, <span th:text="${#ctx.session.currentUser.username}"></span></p>
+    </div>
+
+    <h1>Message board</h1>
+    <p>This is a simple message board application.</p>
+    <div th:if="${#ctx.session.currentUser} == null">Login:
+    <form action="/login" method="post">
+        <input type="text" name="username" placeholder="Enter your username"/> <br/>
+        <input type="password" name="password" placeholder="Enter your password"/> <br/>
+        <button type="submit">Login</button> <br/>
+    </form>
+    </div>
+    <div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>
